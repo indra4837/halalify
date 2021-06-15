@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   camera: ^0.8.1+3
   google_fonts: ^2.0.0
+  flutter_launcher_icons: ^0.9.0
+  flutter_svg:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -33,6 +35,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/halalify.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -48,6 +55,12 @@ flutter:
   assets:
     - assets/images/halalify.png
     - assets/images/halalify_slogan.png
+    - assets/images/chips.jpeg
+    - assets/images/lays.jpg
+    - assets/images/lexus.jpg
+    - assets/images/nissin.png
+    - assets/images/samyang.jpg
+    - assets/images/timtam.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

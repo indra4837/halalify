@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HeaderLogo extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class HeaderLogo extends StatelessWidget {
             Image.asset(
               'assets/images/halalify.png',
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.1,
+              height: MediaQuery.of(context).size.height * 0.09,
               fit: BoxFit.contain,
             ),
             Image.asset(

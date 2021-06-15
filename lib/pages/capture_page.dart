@@ -60,6 +60,7 @@ class CaptureScreenState extends State<CaptureScreen> {
           // If the Future is complete, display the preview.
           return Scaffold(
             body: SafeArea(
+              minimum: EdgeInsets.fromLTRB(0, 50.0, 0, 0),
               child: Column(
                 children: [
                   HeaderLogo(),
@@ -174,7 +175,9 @@ class CaptureScreenState extends State<CaptureScreen> {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:halalify/pages/capture_page.dart';
+import 'package:halalify/pages/home_page.dart';
 
 void main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Center(
-        child: CaptureScreen(
+        child: HomePage(
           camera: widget.camera,
         ),
       ),
