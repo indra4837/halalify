@@ -1,9 +1,5 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:halalify/pages/capture_page.dart';
 import 'package:halalify/pages/home_page.dart';
 
 void main() async {

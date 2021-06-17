@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var foodList = [
     {
-      'img': 'assets/images/chips.jpeg',
+      'img': 'assets/images/lays.jpg',
       'food': 'Lays Potato Chips',
       'type': 'Halal'
     },

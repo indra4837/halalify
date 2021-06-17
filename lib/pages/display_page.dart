@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
+import 'package:simple_ocr_plugin/simple_ocr_plugin.dart';
+
+import '../pages/results_page.dart';
 
 // A widget that displays the picture taken by the user.
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 
   const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
+
+  Future<String> getResult(String imagePath) async {
+    return await SimpleOcrPlugin.performOCR(imagePath);
+  }
 
   double deviceHeight(BuildContext context) =>
       MediaQuery.of(context).size.height;
@@ -57,7 +64,15 @@ class DisplayPictureScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ResultScreen(
+                                  ocrResult: getResult(imagePath),
+                                ),
+                              ));
+                        },
                       ),
                     ),
                   ),
