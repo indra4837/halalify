@@ -27,8 +27,13 @@ dependencies:
   google_fonts:
   flutter_launcher_icons: ^0.9.0
   flutter_svg:
-  flutter_mobile_vision: ^0.1.4+1
   simple_ocr_plugin: ^0.1.1
+  firebase_core: ^1.0.1
+  firebase_auth: ^1.0.1
+  firebase_storage: ^8.1.1
+  cloud_firestore: ^2.2.1
+  flutter_cache_manager: ^3.1.1
+  cached_network_image: ^3.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -57,12 +62,12 @@ flutter:
   assets:
     - assets/images/halalify.png
     - assets/images/halalify_slogan.png
-    - assets/images/chips.jpeg
-    - assets/images/lays.jpg
-    - assets/images/lexus.jpg
-    - assets/images/nissin.png
-    - assets/images/samyang.jpg
-    - assets/images/timtam.png
+    # - assets/images/chips.jpeg
+    # - assets/images/lays.jpg
+    # - assets/images/lexus.jpg
+    # - assets/images/nissin.png
+    # - assets/images/samyang.jpg
+    # - assets/images/timtam.png
     # - assets/tessdata/eng.traineddata
     # - assets/tessdata/msa.traineddata
     # - assets/tessdata_config.json

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "48845568361",
+    "project_id": "halalify-24bc1",
+    "storage_bucket": "halalify-24bc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48845568361:android:61c7fdf0e69dcd4e3ce5f8",
+        "android_client_info": {
+          "package_name": "com.example.halalify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48845568361-jlhsaveqqmo6cnb46h113n4dn2567g7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh_jiOjaI01RofX1TUQGzRTzeAAziz0q8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48845568361-jlhsaveqqmo6cnb46h113n4dn2567g7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
