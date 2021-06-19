@@ -40,11 +40,12 @@ class GridItems extends StatelessWidget {
                       ),
                     ),
                   ),
-                  placeholder: (context, url) =>
-                      new CircularProgressIndicator(),
+                  placeholder: (context, url) => Center(
+                    child: new CircularProgressIndicator(),
+                  ),
                   errorWidget: (context, url, error) => new Icon(
                     Icons.error,
-                  ), //// YOU CAN CREATE YOUR OWN ERROR WIDGET HERE
+                  ),
                 ),
               ),
               Text(
@@ -67,7 +68,9 @@ class GridItems extends StatelessWidget {
               ),
             ],
           );
-        return Text("Loading data");
+        return Center(
+          child: Text("Loading data..."),
+        );
       },
     );
   }

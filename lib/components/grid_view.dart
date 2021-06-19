@@ -16,6 +16,7 @@ class GridViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
+      // TODO: checkout other gridview widgets
       child: GridView.builder(
         itemCount: foodList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

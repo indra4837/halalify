@@ -19,34 +19,34 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var foodList = [
     {
-      'img': 'assets/images/lays.jpg',
+      'img': 'lays.jpg',
       'food': 'Lays Potato Chips',
-      'type': 'Halal'
+      'type': 'Halal',
     },
     {
-      'img': 'assets/images/samyang.jpg',
+      'img': 'samyang.jpg',
       'food': 'Samyang Noodles',
-      'type': 'Non Halal'
+      'type': 'Non Halal',
     },
     {
-      'img': 'assets/images/nissin.png',
+      'img': 'nissin.jpg',
       'food': 'Nissin Noodles',
-      'type': 'Halal'
+      'type': 'Halal',
     },
     {
-      'img': 'assets/images/timtam.png',
+      'img': 'timtam.jpg',
       'food': 'Tim Tam',
       'type': 'Halal',
     },
     {
-      'img': 'assets/images/chips.jpeg',
+      'img': 'chips.jpg',
       'food': 'Chipsmore',
       'type': 'Halal',
     },
     {
-      'img': 'assets/images/lexus.jpg',
+      'img': 'lexus.jpg',
       'food': 'Lexus Biscuit',
-      'type': 'Halal'
+      'type': 'Halal',
     },
   ];
 

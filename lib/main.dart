@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_app_check/firebase_app_check.dart';
 
 import './pages/home_page.dart';
 
-void main() async {
+Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
   // can be called before `runApp()`
   WidgetsFlutterBinding.ensureInitialized();
 
   // initialize firebase
   await Firebase.initializeApp();
+
+  // await FirebaseAppCheck.instance
+  //     .activate(webRecaptchaSiteKey: 'recaptcha-v3-site-key');
 
   // Obtain a list of the available cameras on the device.
   final cameras = await availableCameras();
@@ -60,17 +64,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void signInAnonymously() {
-    _auth.signInAnonymously().then((result) {
-      setState(() {
-        final User user = result.user;
-      });
-    });
-  }
+  // void signInAnonymously() {
+  //   _auth.signInAnonymously().then((result) {
+  //     setState(() {
+  //       final User user = result.user;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    signInAnonymously();
+    // signInAnonymously();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
