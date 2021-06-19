@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:halalify/components/grid_view.dart';
 
 import '../components/header.dart';
 
@@ -18,34 +19,34 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var foodList = [
     {
-      'img': 'assets/images/lays.jpg',
+      'img': 'lays.jpg',
       'food': 'Lays Potato Chips',
-      'type': 'Halal'
+      'type': 'Halal',
     },
     {
-      'img': 'assets/images/samyang.jpg',
+      'img': 'samyang.jpg',
       'food': 'Samyang Noodles',
-      'type': 'Non Halal'
+      'type': 'Non Halal',
     },
     {
-      'img': 'assets/images/nissin.png',
+      'img': 'nissin.jpg',
       'food': 'Nissin Noodles',
-      'type': 'Halal'
+      'type': 'Halal',
     },
     {
-      'img': 'assets/images/timtam.png',
+      'img': 'timtam.jpg',
       'food': 'Tim Tam',
       'type': 'Halal',
     },
     {
-      'img': 'assets/images/chips.jpeg',
+      'img': 'chips.jpg',
       'food': 'Chipsmore',
       'type': 'Halal',
     },
     {
-      'img': 'assets/images/lexus.jpg',
+      'img': 'lexus.jpg',
       'food': 'Lexus Biscuit',
-      'type': 'Halal'
+      'type': 'Halal',
     },
   ];
 
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ));
         },
-        tooltip: 'Increment',
+        tooltip: 'Check another',
         child: Icon(Icons.add),
       ),
       body: SafeArea(
@@ -74,52 +75,8 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              child: GridView.builder(
-                itemCount: foodList.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: MediaQuery.of(context).size.height * 0.03,
-                    crossAxisSpacing: 10),
-                itemBuilder: (_, index) {
-                  return Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        height: MediaQuery.of(context).size.height * 0.19,
-                        width: MediaQuery.of(context).size.width,
-                        child: Image.asset(
-                          foodList[index]['img'],
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Text(
-                        foodList[index]['food'],
-                        style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                          color: Colors.black54,
-                        )),
-                      ),
-                      Text(
-                        foodList[index]['type'],
-                        style: GoogleFonts.alegreyaSans(
-                          textStyle: TextStyle(
-                            color: foodList[index]['type'] == 'Non Halal'
-                                ? Colors.red[900]
-                                : Colors.green[900],
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
+            GridViewWidget(
+              foodList: foodList,
             ),
           ]),
         ),
