@@ -68,15 +68,15 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
       ),
       body: SafeArea(
-        minimum: EdgeInsets.fromLTRB(0, 50.0, 0, 0),
+        minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
         child: SingleChildScrollView(
           child: Column(children: [
             HeaderLogo(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
-            ),
-            GridViewWidget(
-              foodList: foodList,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: GridViewWidget(
+                foodList: foodList,
+              ),
             ),
           ]),
         ),
