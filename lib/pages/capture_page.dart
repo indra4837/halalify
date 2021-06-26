@@ -60,7 +60,7 @@ class CaptureScreenState extends State<CaptureScreen> {
           // If the Future is complete, display the preview.
           return Scaffold(
             body: SafeArea(
-              minimum: EdgeInsets.fromLTRB(0, 50.0, 0, 0),
+              minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
               child: Column(
                 children: [
                   HeaderLogo(),
@@ -77,7 +77,7 @@ class CaptureScreenState extends State<CaptureScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.045,
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   // Container(
                   //   child: Text(

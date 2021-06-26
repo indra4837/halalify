@@ -1,9 +1,9 @@
-import 'package:camera/camera.dart';
-
 import 'package:flutter/material.dart';
-import 'package:halalify/components/grid_view.dart';
+import 'package:camera/camera.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../components/header.dart';
+import '../components/grid_view.dart';
 
 import '../pages/capture_page.dart';
 
@@ -50,6 +50,19 @@ class _HomePageState extends State<HomePage> {
     },
   ];
 
+  DateTime currentBackPressTime;
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      Fluttertoast.showToast(msg: "Press back again to exit");
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,18 +80,21 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Check another',
         child: Icon(Icons.add),
       ),
-      body: SafeArea(
-        minimum: EdgeInsets.fromLTRB(0, 50.0, 0, 0),
-        child: SingleChildScrollView(
-          child: Column(children: [
-            HeaderLogo(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
-            ),
-            GridViewWidget(
-              foodList: foodList,
-            ),
-          ]),
+      body: WillPopScope(
+        onWillPop: onWillPop,
+        child: SafeArea(
+          minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              HeaderLogo(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: GridViewWidget(
+                  foodList: foodList,
+                ),
+              ),
+            ]),
+          ),
         ),
       ),
     );
