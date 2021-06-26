@@ -129,6 +129,8 @@ class _ResultScreenState extends State<ResultScreen> {
                             ),
                           ),
                           onPressed: () {
+                            // popping twice to go back to capture screen
+                            Navigator.pop(context);
                             Navigator.pop(context);
                           },
                         ),
