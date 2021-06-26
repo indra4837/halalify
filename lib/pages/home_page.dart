@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../components/header.dart';
 import '../components/grid_view.dart';
 
-import '../pages/capture_page.dart';
+import '../pages/capture_object_page.dart';
 
 class HomePage extends StatefulWidget {
   final CameraDescription camera;
@@ -65,38 +67,45 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[900],
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => CaptureScreen(
-                  camera: widget.camera,
-                ),
-              ));
-        },
-        tooltip: 'Check another',
-        child: Icon(Icons.add),
-      ),
-      body: WillPopScope(
-        onWillPop: onWillPop,
-        child: SafeArea(
-          minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              HeaderLogo(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: GridViewWidget(
-                  foodList: foodList,
+    return WatchBoxBuilder(
+      box: Hive.box('food'),
+      builder: (context, foodBox) {
+        return Scaffold(
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.blue[900],
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CaptureObjectScreen(
+                      camera: widget.camera,
+                    ),
+                  ));
+            },
+            tooltip: 'Check another',
+            child: Icon(Icons.add),
+          ),
+          body: WillPopScope(
+            onWillPop: onWillPop,
+            child: SafeArea(
+              minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
+              child: Container(
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    HeaderLogo(),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      child: GridViewWidget(
+                        foodList: foodList,
+                      ),
+                    ),
+                  ]),
                 ),
               ),
-            ]),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

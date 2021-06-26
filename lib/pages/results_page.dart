@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../components/header.dart';
+
+import '../models/food.dart';
 
 class ResultScreen extends StatefulWidget {
   final Future<String> ocrResult;
@@ -17,6 +21,7 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   String displayResult = "Getting results...";
   String finalResult;
+  final foodController = TextEditingController();
 
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -28,6 +33,7 @@ class _ResultScreenState extends State<ResultScreen> {
             var resultList = finalResult.split(" ");
             resultList = resultList.where((x) => x != "").toList();
             print(resultList);
+            final foodBox = Hive.box('food');
             return Scaffold(
               body: SafeArea(
                 minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
@@ -38,7 +44,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                       child: Container(
-                        height: MediaQuery.of(context).size.height * 0.5,
+                        height: MediaQuery.of(context).size.height * 0.4,
                         width: MediaQuery.of(context).size.width * 0.95,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
@@ -106,13 +112,26 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                     ),
                     Padding(
+                      padding: const EdgeInsets.only(
+                          left: 15.0, right: 15.0, top: 15, bottom: 0),
+                      //padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(borderSide: BorderSide()),
+                          labelText: 'Food',
+                          hintText: 'Enter food name',
+                        ),
+                        controller: foodController,
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.055,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
                           child: Text(
-                            'Back',
+                            'Save',
                             style: GoogleFonts.nunito(
                               textStyle: TextStyle(fontSize: 18),
                             ),
@@ -129,6 +148,47 @@ class _ResultScreenState extends State<ResultScreen> {
                             ),
                           ),
                           onPressed: () {
+                            // update Hive DB
+                            foodBox.add(Food(
+                                'nissin.jpg', foodController.text, 'Halal'));
+                            // popping twice to go back to home screen
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.055,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: ElevatedButton(
+                          child: Text(
+                            'Back',
+                            style: GoogleFonts.nunito(
+                              textStyle: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(),
+                              ),
+                            ),
+                          ),
+                          onPressed: () {
+                            // popping twice to go back to capture screen
+                            Navigator.pop(context);
                             Navigator.pop(context);
                           },
                         ),

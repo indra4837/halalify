@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import './pages/home_page.dart';
+
+import './models/food.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -14,8 +17,11 @@ Future<void> main() async {
   // initialize firebase
   await Firebase.initializeApp();
 
-  // await FirebaseAppCheck.instance
-  //     .activate(webRecaptchaSiteKey: 'recaptcha-v3-site-key');
+  // initialize hive database
+  await Hive.initFlutter();
+  Hive.registerAdapter(FoodAdapter());
+  await Hive.openBox('food');
+  // Hive.registerAdapter(FoodAdapter());
 
   // Obtain a list of the available cameras on the device.
   final cameras = await availableCameras();
