@@ -25,7 +25,9 @@ class _ResultScreenState extends State<ResultScreen> {
           if (result.hasData) {
             Map resultMap = json.decode(result.data);
             finalResult = resultMap['text'];
-            final resultList = finalResult.split(" ");
+            var resultList = finalResult.split(" ");
+            resultList = resultList.where((x) => x != "").toList();
+            print(resultList);
             return Scaffold(
               body: SafeArea(
                 minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
@@ -51,21 +53,27 @@ class _ResultScreenState extends State<ResultScreen> {
                           padding: const EdgeInsets.all(5.0),
                           child: GridView.builder(
                             gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisExtent:
+                                  MediaQuery.of(context).size.height * 0.05,
                               crossAxisCount: 2,
-                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 20,
                             ),
                             itemCount: resultList.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Text(
-                                '- ' + resultList[index],
-                                style: GoogleFonts.alegreyaSans(
+                              if (resultList[index] != " ") {
+                                return Text(
+                                  '- ' + resultList[index],
+                                  style: GoogleFonts.alegreyaSans(
                                     textStyle: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                )),
-                              );
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                );
+                              }
+                              return Text("No ingredients detected");
                             },
                           ),
                         ),

@@ -20,9 +20,10 @@ class GridViewWidget extends StatelessWidget {
       child: GridView.builder(
         itemCount: foodList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: MediaQuery.of(context).size.height * 0.03,
-            crossAxisSpacing: 10),
+          crossAxisCount: 2,
+          mainAxisSpacing: MediaQuery.of(context).size.height * 0.03,
+          crossAxisSpacing: 10,
+        ),
         itemBuilder: (_, index) {
           return GridItems(
             imgPath: getImageURL(foodList[index]['img']),
