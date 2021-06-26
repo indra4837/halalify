@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:halalify/pages/capture_ingredient_page.dart';
 
 import '../components/header.dart';
 
@@ -118,10 +119,10 @@ class CaptureScreenState extends State<CaptureObjectScreen> {
                             // If the picture was taken, display it on a new screen.
                             await Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => DisplayPictureScreen(
+                                builder: (context) => CaptureIngredientScreen(
                                   // Pass the automatically generated path to
                                   // the DisplayPictureScreen widget.
-                                  imagePath: image.path,
+                                  camera: widget.camera,
                                 ),
                               ),
                             );
