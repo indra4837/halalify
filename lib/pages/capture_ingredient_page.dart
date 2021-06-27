@@ -9,19 +9,21 @@ import '../components/header.dart';
 import '../pages/display_page.dart';
 
 // A screen that allows users to take a picture using a given camera.
-class CaptureScreen extends StatefulWidget {
+class CaptureIngredientScreen extends StatefulWidget {
   final CameraDescription camera;
+  final String foodPath;
 
-  const CaptureScreen({
+  const CaptureIngredientScreen({
     Key key,
     this.camera,
+    this.foodPath,
   }) : super(key: key);
 
   @override
   CaptureScreenState createState() => CaptureScreenState();
 }
 
-class CaptureScreenState extends State<CaptureScreen> {
+class CaptureScreenState extends State<CaptureIngredientScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
 
@@ -79,26 +81,6 @@ class CaptureScreenState extends State<CaptureScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
-                  // Container(
-                  //   child: Text(
-                  //     "Instructions",
-                  //     style: GoogleFonts.inter(
-                  //       textStyle: TextStyle(
-                  //         decoration: TextDecoration.underline,
-                  //         fontWeight: FontWeight.bold,
-                  //         fontSize: 14.0,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   child: Text(
-                  //     "Point at the ingredient label and press 'Capture'",
-                  //     style: GoogleFonts.inter(
-                  //       textStyle: TextStyle(fontStyle: FontStyle.normal),
-                  //     ),
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
@@ -106,7 +88,7 @@ class CaptureScreenState extends State<CaptureScreen> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: ElevatedButton(
                         child: Text(
-                          'Capture',
+                          'Capture Ingredients',
                           style: GoogleFonts.nunito(
                             textStyle: TextStyle(fontSize: 18),
                           ),
@@ -139,7 +121,8 @@ class CaptureScreenState extends State<CaptureScreen> {
                                 builder: (context) => DisplayPictureScreen(
                                   // Pass the automatically generated path to
                                   // the DisplayPictureScreen widget.
-                                  imagePath: image.path,
+                                  ingredientPath: image.path,
+                                  foodPath: widget.foodPath,
                                 ),
                               ),
                             );
@@ -187,7 +170,11 @@ class CaptureScreenState extends State<CaptureScreen> {
           );
         } else {
           // Otherwise, display a loading indicator.
-          return const Center(child: CircularProgressIndicator());
+          return Scaffold(
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
       },
     );

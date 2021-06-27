@@ -7,9 +7,11 @@ import '../pages/results_page.dart';
 
 // A widget that displays the picture taken by the user.
 class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
+  final String ingredientPath;
+  final String foodPath;
 
-  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
+  const DisplayPictureScreen({Key key, this.ingredientPath, this.foodPath})
+      : super(key: key);
 
   Future<String> getResult(String imagePath) async {
     return await SimpleOcrPlugin.performOCR(imagePath);
@@ -33,7 +35,8 @@ class DisplayPictureScreen extends StatelessWidget {
                     // height: MediaQuery.of(context).size.height * 0.5,
                     // width: MediaQuery.of(context).size.width,
                     child: Image.file(
-                      File(imagePath),
+                      File(ingredientPath),
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -66,12 +69,14 @@ class DisplayPictureScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => ResultScreen(
-                                  ocrResult: getResult(imagePath),
-                                ),
-                              ));
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ResultScreen(
+                                ocrResult: getResult(ingredientPath),
+                                imgPath: foodPath,
+                              ),
+                            ),
+                          );
                         },
                       ),
                     ),

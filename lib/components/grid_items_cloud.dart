@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class GridItems extends StatelessWidget {
+class GridItemsCloud extends StatelessWidget {
   final Future<String> imgPath;
   final String food;
   final String type;
 
-  const GridItems({
+  const GridItemsCloud({
     Key key,
     this.imgPath,
     this.food,
