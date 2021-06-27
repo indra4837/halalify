@@ -9,6 +9,8 @@ import '../components/grid_view.dart';
 
 import '../pages/capture_object_page.dart';
 
+import '../models/haram_list.dart';
+
 class HomePage extends StatefulWidget {
   final CameraDescription camera;
 
@@ -91,15 +93,17 @@ class _HomePageState extends State<HomePage> {
               minimum: EdgeInsets.fromLTRB(0, 30.0, 0, 0),
               child: Container(
                 child: SingleChildScrollView(
-                  child: Column(children: [
-                    HeaderLogo(),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: GridViewWidget(
-                        foodList: foodList,
+                  child: Column(
+                    children: [
+                      HeaderLogo(),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: GridViewWidget(
+                          foodList: foodList,
+                        ),
                       ),
-                    ),
-                  ]),
+                    ],
+                  ),
                 ),
               ),
             ),

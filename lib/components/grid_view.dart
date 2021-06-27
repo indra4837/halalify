@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:halalify/components/grid_items_cloud.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../components/grid_items.dart';
+// import 'grid_items_cloud.dart';
+
+import './grid_items_local.dart';
 
 import '../models/get_image.dart';
 import '../models/food.dart';
@@ -41,11 +44,13 @@ class GridViewWidget extends StatelessWidget {
                       itemBuilder: (_, index) {
                         final food = foodBox.getAt(index) as Food;
                         if (foodBox.isNotEmpty) {
-                          return GridItems(
+                          print(food.imagePath);
+                          return GridItemsLocal(
                             // imgPath: getImageURL(foodList[index]['img']),
                             // food: foodList[index]['food'],
                             // type: foodList[index]['type'],
-                            imgPath: getImageURL(food.imagePath),
+                            // imgPath: getImageURL(food.imagePath),
+                            imgPath: food.imagePath,
                             food: food.food,
                             type: food.type,
                           );
@@ -53,11 +58,13 @@ class GridViewWidget extends StatelessWidget {
                       },
                     )
                   : Text("No previous data available"),
-              // TODO: shift the text to center of page
+              // TODO: shift the text to center of page aka prettify this error handling
             );
           }
         } else
-          return Scaffold();
+          return Scaffold(
+            body: Container(),
+          );
       },
     );
   }

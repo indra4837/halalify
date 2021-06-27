@@ -11,10 +11,12 @@ import '../pages/display_page.dart';
 // A screen that allows users to take a picture using a given camera.
 class CaptureIngredientScreen extends StatefulWidget {
   final CameraDescription camera;
+  final String foodPath;
 
   const CaptureIngredientScreen({
     Key key,
     this.camera,
+    this.foodPath,
   }) : super(key: key);
 
   @override
@@ -119,7 +121,8 @@ class CaptureScreenState extends State<CaptureIngredientScreen> {
                                 builder: (context) => DisplayPictureScreen(
                                   // Pass the automatically generated path to
                                   // the DisplayPictureScreen widget.
-                                  imagePath: image.path,
+                                  ingredientPath: image.path,
+                                  foodPath: widget.foodPath,
                                 ),
                               ),
                             );
@@ -167,7 +170,11 @@ class CaptureScreenState extends State<CaptureIngredientScreen> {
           );
         } else {
           // Otherwise, display a loading indicator.
-          return const Center(child: CircularProgressIndicator());
+          return Scaffold(
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
       },
     );

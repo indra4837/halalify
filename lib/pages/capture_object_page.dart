@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:halalify/pages/capture_ingredient_page.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../components/header.dart';
 
-import '../pages/display_page.dart';
+import '../pages/capture_ingredient_page.dart';
 
 // A screen that allows users to take a picture using a given camera.
 class CaptureObjectScreen extends StatefulWidget {
@@ -25,6 +25,7 @@ class CaptureObjectScreen extends StatefulWidget {
 class CaptureScreenState extends State<CaptureObjectScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
+  final _picker = ImagePicker();
 
   @override
   void initState() {
@@ -115,6 +116,7 @@ class CaptureScreenState extends State<CaptureObjectScreen> {
                             final image = await _controller.takePicture();
 
                             // TODO: save picture of food onto phone for later
+                            // _picker.getImage(source: image.);
 
                             // If the picture was taken, display it on a new screen.
                             await Navigator.of(context).push(
@@ -123,6 +125,7 @@ class CaptureScreenState extends State<CaptureObjectScreen> {
                                   // Pass the automatically generated path to
                                   // the DisplayPictureScreen widget.
                                   camera: widget.camera,
+                                  foodPath: image.path,
                                 ),
                               ),
                             );
@@ -170,7 +173,11 @@ class CaptureScreenState extends State<CaptureObjectScreen> {
           );
         } else {
           // Otherwise, display a loading indicator.
-          return const Center(child: CircularProgressIndicator());
+          return Scaffold(
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
       },
     );

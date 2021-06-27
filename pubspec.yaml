@@ -40,6 +40,8 @@ dependencies:
   fluttertoast: ^8.0.7
   hive: ^2.0.4
   hive_flutter: ^1.1.0
+  image_picker: ^0.8.1+1
+  csv: ^5.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -70,6 +72,7 @@ flutter:
   assets:
     - assets/images/halalify.png
     - assets/images/halalify_slogan.png
+    - assets/data/haram.csv
     # - assets/images/chips.jpeg
     # - assets/images/lays.jpg
     # - assets/images/lexus.jpg
